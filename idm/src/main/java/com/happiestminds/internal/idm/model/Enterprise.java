@@ -25,8 +25,10 @@ public class Enterprise extends BaseHistoryEntity {
   private Status status;
 
   @Column(name = "enterprise_code")
-  private String code;
+  @Enumerated(EnumType.STRING)
+  private EnterpriseCode code;
 
   @Column(name = "enterprise_type")
+  @Enumerated(EnumType.ORDINAL)
   private EnterpriseType type;
 }

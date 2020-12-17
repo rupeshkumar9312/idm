@@ -22,7 +22,7 @@ public class UserActivationKey extends BaseHistoryEntity {
   private long id;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  @JoinColumn(name = "id")
+  @JoinColumn(name = "user_id", referencedColumnName = "id")
   private User user;
 
   @Column(name = "activation_key")
