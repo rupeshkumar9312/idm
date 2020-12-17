@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -54,10 +55,17 @@ public class User extends BaseHistoryEntity {
   @Column(name = "name")
   private String name;
 
-  @OneToMany(fetch = FetchType.EAGER)
+  /*  @OneToMany(fetch = FetchType.EAGER)
   @JoinTable(
       name = "user_roles",
-      joinColumns = {@JoinColumn(name = "id", referencedColumnName = "user_id")},
-      inverseJoinColumns = {@JoinColumn(name = "id", referencedColumnName = "role_id")})
-  private List<Role> role;
+      joinColumns = {
+        @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+      },
+      inverseJoinColumns = {
+        @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
+      })
+  private List<Role> role;*/
+
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+  private List<UserRole> userRoles = new ArrayList<>();
 }

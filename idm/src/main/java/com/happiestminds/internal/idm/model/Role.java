@@ -3,6 +3,8 @@ package com.happiestminds.internal.idm.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,4 +27,18 @@ public class Role extends BaseHistoryEntity {
 
   @Column(name = "enterprise_code")
   private String enterpriseCode;
+
+  /*@ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+      name = "role_permissions",
+      joinColumns = {@JoinColumn(name = "id", referencedColumnName = "id",insertable = false,updatable = false)},
+      inverseJoinColumns = {@JoinColumn(name = "id", referencedColumnName = "id",insertable = false,updatable = false)})
+  private List<Permission> permissions;
+*/
+
+  @OneToMany(mappedBy = "role")
+  private List<RolePermission> rolePermissions = new ArrayList<>();
+
+  @OneToMany(mappedBy = "role")
+  private List<UserRole> userRoles = new ArrayList<>();
 }
