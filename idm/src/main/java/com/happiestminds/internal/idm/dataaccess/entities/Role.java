@@ -1,4 +1,4 @@
-package com.happiestminds.internal.idm.model;
+package com.happiestminds.internal.idm.dataaccess.entities;
 
 import lombok.Data;
 

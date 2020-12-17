@@ -1,9 +1,8 @@
-package com.happiestminds.internal.idm.model;
+package com.happiestminds.internal.idm.dataaccess.entities;
 
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
