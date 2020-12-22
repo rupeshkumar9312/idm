@@ -3,7 +3,7 @@ package com.happiestminds.internal.idm.dataaccess.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "role_permission")
+@Table(name = "role_permissions")
 public class RolePermission extends BaseHistoryEntity {
 
   @Id

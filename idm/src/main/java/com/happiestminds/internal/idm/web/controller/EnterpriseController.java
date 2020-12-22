@@ -13,35 +13,35 @@ import java.util.List;
 @RequestMapping("/enterprises")
 public class EnterpriseController {
 
-    private EnterpriseService enterpriseService;
+  private EnterpriseService enterpriseService;
 
-    @Autowired
-    public EnterpriseController(EnterpriseService anEnterpriseService) {
-        this.enterpriseService = anEnterpriseService;
-    }
+  @Autowired
+  public EnterpriseController(EnterpriseService anEnterpriseService) {
+    this.enterpriseService = anEnterpriseService;
+  }
 
-    @GetMapping
-    public List<EnterpriseDto> getEnterprises() {
-        return EnterpriseTransformer.INSTANCE.toDto(enterpriseService.getEnterprises());
-    }
+  @GetMapping
+  public List<EnterpriseDto> getEnterprises() {
+    return EnterpriseTransformer.INSTANCE.toDto(enterpriseService.getEnterprises());
+  }
 
-    @GetMapping("/{id}")
-    public EnterpriseDto getEnterprise(@PathVariable long id) {
-        return EnterpriseTransformer.INSTANCE.toDto(enterpriseService.getEnterpriseById(id));
-    }
+  @GetMapping("/{id}")
+  public EnterpriseDto getEnterprise(@PathVariable long id) {
+    return EnterpriseTransformer.INSTANCE.toDto(enterpriseService.getEnterpriseById(id));
+  }
 
-    @PostMapping
-    public EnterpriseDto saveEnterprise(@RequestBody Enterprise enterprise) {
-        return EnterpriseTransformer.INSTANCE.toDto(enterpriseService.saveEnterprise(enterprise));
-    }
+  @PostMapping
+  public EnterpriseDto saveEnterprise(@RequestBody Enterprise enterprise) {
+    return EnterpriseTransformer.INSTANCE.toDto(enterpriseService.saveEnterprise(enterprise));
+  }
 
-    @PutMapping("/{id}")
-    public EnterpriseDto updateEnterprise(@PathVariable long id, @RequestBody Enterprise enterprise) {
-        return EnterpriseTransformer.INSTANCE.toDto(enterpriseService.updateEnterprise(id, enterprise));
-    }
+  @PutMapping("/{id}")
+  public EnterpriseDto updateEnterprise(@PathVariable long id, @RequestBody Enterprise enterprise) {
+    return EnterpriseTransformer.INSTANCE.toDto(enterpriseService.updateEnterprise(id, enterprise));
+  }
 
-    @DeleteMapping("/{id}")
-    public void deleteEnterprise(@PathVariable long id) {
-        enterpriseService.deleteEnterprise(id);
-    }
+  @DeleteMapping("/{id}")
+  public void deleteEnterprise(@PathVariable long id) {
+    enterpriseService.deleteEnterprise(id);
+  }
 }

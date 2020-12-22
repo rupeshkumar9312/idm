@@ -23,7 +23,7 @@ public class Role extends BaseHistoryEntity {
   private String description;
 
   @Column(name = "status")
-  private Status status;
+  private char status;
 
   @Column(name = "enterprise_code")
   private String enterpriseCode;
