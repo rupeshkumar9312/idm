@@ -1,12 +1,13 @@
 package com.happiestminds.internal.idm.dataaccess.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +17,7 @@ import java.util.List;
 public class Permission extends BaseHistoryEntity implements Serializable {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
 
@@ -34,9 +35,6 @@ public class Permission extends BaseHistoryEntity implements Serializable {
 
   @Column(name = "status")
   private char status;
-
-  @OneToMany(mappedBy = "permission")
-  private List<RolePermission> rolePermissions = new ArrayList<>();
 
   public Long getId() {
     return id;
@@ -86,11 +84,4 @@ public class Permission extends BaseHistoryEntity implements Serializable {
     this.status = status;
   }
 
-  public List<RolePermission> getRolePermissions() {
-    return rolePermissions;
-  }
-
-  public void setRolePermissions(List<RolePermission> rolePermissions) {
-    this.rolePermissions = rolePermissions;
-  }
 }
