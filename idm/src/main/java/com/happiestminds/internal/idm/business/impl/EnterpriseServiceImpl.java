@@ -13,37 +13,41 @@ import java.util.stream.StreamSupport;
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
 
-    @Autowired
-    private EnterpriseRepository enterpriseRepository;
+  private EnterpriseRepository enterpriseRepository;
 
-    @Override
-    public List<Enterprise> getEnterprises() {
-        return StreamSupport.stream(enterpriseRepository.findAll().spliterator(), false)
-                .collect(Collectors.toList());
-    }
+  @Autowired
+  public EnterpriseServiceImpl(EnterpriseRepository enterpriseRepository) {
+    this.enterpriseRepository = enterpriseRepository;
+  }
 
-    @Override
-    public Enterprise getEnterpriseById(long id) {
-        return enterpriseRepository.findById(id).orElseThrow();
-    }
+  @Override
+  public List<Enterprise> getEnterprises() {
+    return StreamSupport.stream(enterpriseRepository.findAll().spliterator(), false)
+            .collect(Collectors.toList());
+  }
 
-    @Override
-    public void deleteEnterprise(long id) {
-        enterpriseRepository.deleteById(id);
-    }
+  @Override
+  public Enterprise getEnterpriseById(long id) {
+    return enterpriseRepository.findById(id).orElseThrow();
+  }
 
-    @Override
-    public Enterprise updateEnterprise(long id, Enterprise enterprise) {
-        var dbEnterprise = getEnterpriseById(id);
-        dbEnterprise.setName(enterprise.getName());
-        dbEnterprise.setCode(enterprise.getCode());
-        dbEnterprise.setStatus(enterprise.getStatus());
-        dbEnterprise.setType(enterprise.getType());
-        return enterpriseRepository.save(dbEnterprise);
-    }
+  @Override
+  public void deleteEnterprise(long id) {
+    enterpriseRepository.deleteById(id);
+  }
 
-    @Override
-    public Enterprise saveEnterprise(Enterprise enterprise) {
-        return enterpriseRepository.save(enterprise);
-    }
+  @Override
+  public Enterprise updateEnterprise(long id, Enterprise enterprise) {
+    var dbEnterprise = getEnterpriseById(id);
+    dbEnterprise.setName(enterprise.getName());
+    dbEnterprise.setCode(enterprise.getCode());
+    dbEnterprise.setStatus(enterprise.getStatus());
+    dbEnterprise.setType(enterprise.getType());
+    return enterpriseRepository.save(dbEnterprise);
+  }
+
+  @Override
+  public Enterprise saveEnterprise(Enterprise enterprise) {
+    return enterpriseRepository.save(enterprise);
+  }
 }
