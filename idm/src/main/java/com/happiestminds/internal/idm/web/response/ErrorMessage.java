@@ -3,17 +3,18 @@ package com.happiestminds.internal.idm.web.response;
 import org.springframework.http.HttpStatus;
 
 public enum ErrorMessage {
-  ROLE_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "Role not found", 1);
+    ROLE_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "Role not found", 1),
+    PERMISSION_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "Permission not found", 1);
 
-  private int code;
+    private int code;
 
-  private String message;
+    private String message;
 
-  private int applicationErrorCode;
+    private int applicationErrorCode;
 
-  ErrorMessage(int code, String message, int applicationErrorCode) {
-    this.code = code;
-    this.message = message;
+    ErrorMessage(int code, String message, int applicationErrorCode) {
+        this.code = code;
+        this.message = message;
     this.applicationErrorCode = applicationErrorCode;
   }
 

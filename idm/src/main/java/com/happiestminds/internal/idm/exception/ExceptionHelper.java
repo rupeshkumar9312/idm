@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionHelper {
 
-  @ExceptionHandler(value = RoleNotFoundException.class)
-  public ResponseEntity<Object> exception(RoleNotFoundException exception) {
+  @ExceptionHandler(value = ResourceNotFoundException.class)
+  public static ResponseEntity<Object> handleException(ResourceNotFoundException exception) {
     return new ResponseEntity<>(
-            new ErrorResponse(ErrorMessage.ROLE_NOT_FOUND), HttpStatus.NOT_FOUND);
+            new ErrorResponse(exception.getErrorMessage()), HttpStatus.NOT_FOUND);
   }
 }

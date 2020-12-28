@@ -6,7 +6,7 @@ import com.happiestminds.internal.idm.dataaccess.entities.RolePermission;
 import com.happiestminds.internal.idm.dataaccess.repository.PermissionRepository;
 import com.happiestminds.internal.idm.dataaccess.repository.RolePermissionRepository;
 import com.happiestminds.internal.idm.dataaccess.repository.RoleRepository;
-import com.happiestminds.internal.idm.exception.RoleNotFoundException;
+import com.happiestminds.internal.idm.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
+import static com.happiestminds.internal.idm.web.response.ErrorMessage.ROLE_NOT_FOUND;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -35,7 +37,9 @@ public class RoleServiceImpl implements RoleService {
 
   @Override
   public Role getRole(Long id) {
-    return roleRepository.findById(id).orElseThrow(RoleNotFoundException::new);
+    return roleRepository
+            .findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException(ROLE_NOT_FOUND));
   }
 
   @Override
@@ -55,7 +59,7 @@ public class RoleServiceImpl implements RoleService {
     try {
       roleRepository.deleteById(id);
     } catch (EmptyResultDataAccessException ex) {
-      throw new RoleNotFoundException();
+      throw new ResourceNotFoundException(ROLE_NOT_FOUND);
     }
   }
 
