@@ -17,4 +17,5 @@ public interface EnterpriseService {
   Enterprise updateEnterprise(long id, Enterprise enterprise);
 
   void deleteEnterprise(long id);
+
 }

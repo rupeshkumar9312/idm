@@ -10,6 +10,14 @@ import java.io.Serializable;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+/*@NamedStoredProcedureQueries({
+  @NamedStoredProcedureQuery(
+      name = "get_enterprise_by_id",
+      procedureName = "get_enterprise_by_id",
+      parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = Long.class)
+      })
+})*/
 public class Enterprise extends BaseHistoryEntity implements Serializable {
 
     @Id
@@ -24,11 +32,11 @@ public class Enterprise extends BaseHistoryEntity implements Serializable {
     private char status;
 
     @Column(name = "enterprise_code")
-//  @Enumerated(EnumType.STRING)
+    //  @Enumerated(EnumType.STRING)
     private String code;
 
     @Column(name = "enterprise_type")
-//  @Enumerated(EnumType.ORDINAL)
+    //  @Enumerated(EnumType.ORDINAL)
     private int type;
 
     public Long getId() {

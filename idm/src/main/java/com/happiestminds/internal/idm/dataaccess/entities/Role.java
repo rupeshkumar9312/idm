@@ -18,6 +18,7 @@ public class Role extends BaseHistoryEntity {
   private Long id;
 
   @Column(name = "name")
+
   private String name;
 
   @Column(name = "description")
