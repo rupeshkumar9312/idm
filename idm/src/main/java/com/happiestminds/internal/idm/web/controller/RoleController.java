@@ -8,7 +8,6 @@ import com.happiestminds.internal.idm.web.response.Response;
 import com.happiestminds.internal.idm.web.transformer.RoleTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,10 +38,13 @@ public class RoleController {
     return new ResponseEntity<>(new RoleResponse(roleDtos), HttpStatus.OK);
   }
 
-  @PostMapping
-  public ResponseEntity<?> updateRole(@RequestBody RoleUpdateRequest roleUpdateRequest) {
-    // TODO: implement update role endpoint
-    return new ResponseEntity<>("To be implemented", HttpStatus.OK);
+  @PutMapping("/{id}")
+  public ResponseEntity<?> updateRole(
+          @RequestBody RoleUpdateRequest roleUpdateRequest, @PathVariable Long id) {
+    var roleEntity = RoleTransformer.INSTANCE.toEntity(roleUpdateRequest);
+    roleService.updateRole(id, roleEntity);
+    return new ResponseEntity<>(
+            new Response(HttpStatus.OK.value(), "Role Updated Successfully", "0"), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")

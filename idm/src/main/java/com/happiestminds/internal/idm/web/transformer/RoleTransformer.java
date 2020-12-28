@@ -1,6 +1,7 @@
 package com.happiestminds.internal.idm.web.transformer;
 
 import com.happiestminds.internal.idm.dataaccess.dto.RoleCreateRequest;
+import com.happiestminds.internal.idm.dataaccess.dto.RoleUpdateRequest;
 import com.happiestminds.internal.idm.dataaccess.entities.Role;
 import com.happiestminds.internal.idm.web.model.RoleDto;
 import org.mapstruct.Mapper;
@@ -20,4 +21,6 @@ public interface RoleTransformer {
 
   //  @Mapping(source = "permissions",target = "rolePermissions")
   Role toEntity(RoleCreateRequest roleCreateRequest);
+
+  Role toEntity(RoleUpdateRequest roleUpdateRequest);
 }
