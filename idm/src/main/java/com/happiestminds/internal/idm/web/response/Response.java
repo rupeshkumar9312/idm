@@ -1,6 +1,6 @@
 package com.happiestminds.internal.idm.web.response;
 
-import org.springframework.http.HttpStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Response {
 
@@ -8,12 +8,18 @@ public class Response {
 
   private String message;
 
-  private String applicationErrorCode;
+  private int applicationErrorCode;
 
-  public Response() {
+  @JsonIgnore
+  private SuccessMessage successMessage;
+
+  public Response(SuccessMessage successMessage) {
+    code = successMessage.getStatus().value();
+    message = successMessage.getMessage();
+    applicationErrorCode = successMessage.getApplicationErrorCode();
   }
 
-  public Response(int code, String message, String applicationErrorCode) {
+  public Response(int code, String message, int applicationErrorCode) {
     this.code = code;
     this.message = message;
     this.applicationErrorCode = applicationErrorCode;
@@ -35,11 +41,11 @@ public class Response {
     this.message = message;
   }
 
-  public String getApplicationErrorCode() {
+  public int getApplicationErrorCode() {
     return applicationErrorCode;
   }
 
-  public void setApplicationErrorCode(String applicationErrorCode) {
+  public void setApplicationErrorCode(int applicationErrorCode) {
     this.applicationErrorCode = applicationErrorCode;
   }
 }
