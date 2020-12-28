@@ -3,6 +3,8 @@ package com.happiestminds.internal.idm.business.impl;
 import com.happiestminds.internal.idm.business.EnterpriseService;
 import com.happiestminds.internal.idm.dataaccess.entities.Enterprise;
 import com.happiestminds.internal.idm.dataaccess.repository.EnterpriseRepository;
+import com.happiestminds.internal.idm.exception.ResourceNotFoundException;
+import com.happiestminds.internal.idm.web.response.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,9 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
   @Override
   public Enterprise getEnterpriseById(long id) {
-    return enterpriseRepository.findById(id).orElseThrow();
+    return enterpriseRepository
+            .findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException(ErrorMessage.ENTERPRISE_NOT_FOUND));
   }
 
   @Override

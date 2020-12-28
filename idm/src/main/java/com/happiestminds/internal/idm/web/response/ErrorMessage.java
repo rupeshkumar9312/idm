@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 
 public enum ErrorMessage {
     ROLE_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "Role not found", 1),
-    PERMISSION_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "Permission not found", 1);
-
+    PERMISSION_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "Permission not found", 1),
+    ENTERPRISE_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "Enterprise not found", 1);
     private int code;
 
     private String message;
@@ -15,16 +15,16 @@ public enum ErrorMessage {
     ErrorMessage(int code, String message, int applicationErrorCode) {
         this.code = code;
         this.message = message;
-    this.applicationErrorCode = applicationErrorCode;
-  }
+        this.applicationErrorCode = applicationErrorCode;
+    }
 
-  public int getCode() {
-    return code;
-  }
+    public int getCode() {
+        return code;
+    }
 
-  public void setCode(int code) {
-    this.code = code;
-  }
+    public void setCode(int code) {
+        this.code = code;
+    }
 
   public String getMessage() {
     return message;
