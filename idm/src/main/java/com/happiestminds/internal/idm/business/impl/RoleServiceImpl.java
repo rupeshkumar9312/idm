@@ -38,7 +38,14 @@ public class RoleServiceImpl implements RoleService {
 
   @Override
   public Role updateRole(Long id, Role role) {
-    return null;
+    var dbRole = getRole(id);
+    dbRole.setDescription(role.getDescription());
+    dbRole.setPermissions(role.getPermissions());
+    dbRole.setEnterpriseCode(role.getEnterpriseCode());
+    dbRole.setStatus(role.getStatus());
+    dbRole.setUserRoles(role.getUserRoles());
+    dbRole.setName(role.getName());
+    return roleRepository.save(dbRole);
   }
 
   @Override

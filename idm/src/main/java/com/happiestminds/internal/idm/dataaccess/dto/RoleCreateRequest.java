@@ -8,64 +8,64 @@ import java.util.List;
 
 public class RoleCreateRequest {
 
-    private Long id;
+  private Long id;
 
-    private String name;
+  private String name;
 
-    private String description;
+  private String description;
 
-    private char status;
+  private char status;
 
-    private String enterpriseCode;
+  private String enterpriseCode;
 
-    @JsonProperty("permissionIds")
-    private List<IdMapping> permissions = new ArrayList<>();
+  @JsonProperty("permissionIds")
+  private List<IdMapping> permissions = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public char getStatus() {
-        return status;
-    }
+  public char getStatus() {
+    return status;
+  }
 
-    public void setStatus(char status) {
-        this.status = status;
-    }
+  public void setStatus(char status) {
+    this.status = status;
+  }
 
-    public String getEnterpriseCode() {
-        return enterpriseCode;
-    }
+  public String getEnterpriseCode() {
+    return enterpriseCode;
+  }
 
-    public void setEnterpriseCode(String enterpriseCode) {
-        this.enterpriseCode = enterpriseCode;
-    }
+  public void setEnterpriseCode(String enterpriseCode) {
+    this.enterpriseCode = enterpriseCode;
+  }
 
-    public List<IdMapping> getPermissions() {
-        return permissions;
-    }
+  public List<IdMapping> getPermissions() {
+    return permissions;
+  }
 
-    public void setPermissions(List<IdMapping> permissions) {
-        this.permissions = permissions;
-    }
+  public void setPermissions(List<IdMapping> permissions) {
+    this.permissions = permissions;
+  }
 }
