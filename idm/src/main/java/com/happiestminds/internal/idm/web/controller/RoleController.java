@@ -4,7 +4,7 @@ import com.happiestminds.internal.idm.business.RoleService;
 import com.happiestminds.internal.idm.dataaccess.dto.RoleCreateRequest;
 import com.happiestminds.internal.idm.dataaccess.dto.RoleUpdateRequest;
 import com.happiestminds.internal.idm.web.response.RoleResponse;
-import com.happiestminds.internal.idm.web.response.Response;
+import com.happiestminds.internal.idm.web.response.SuccessResponse;
 import com.happiestminds.internal.idm.web.response.SuccessMessage;
 import com.happiestminds.internal.idm.web.transformer.RoleTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ public class RoleController {
   public ResponseEntity<?> createRole(@RequestBody RoleCreateRequest roleCreateRequest) {
     var role = RoleTransformer.INSTANCE.toEntity(roleCreateRequest);
     roleService.createRole(role);
-    return new ResponseEntity<Response>(
-            new Response(SuccessMessage.ROLE_CREATE), HttpStatus.CREATED);
+    return new ResponseEntity<SuccessResponse>(
+            new SuccessResponse(SuccessMessage.ROLE_CREATE), HttpStatus.CREATED);
   }
 
   @GetMapping("/{id}")
@@ -44,12 +44,12 @@ public class RoleController {
           @RequestBody RoleUpdateRequest roleUpdateRequest, @PathVariable Long id) {
     var roleEntity = RoleTransformer.INSTANCE.toEntity(roleUpdateRequest);
     roleService.updateRole(id, roleEntity);
-    return new ResponseEntity<>(new Response(SuccessMessage.ROLE_UPDATE), HttpStatus.OK);
+    return new ResponseEntity<>(new SuccessResponse(SuccessMessage.ROLE_UPDATE), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<?> deleteRole(@PathVariable Long id) {
     roleService.deleteRole(id);
-    return new ResponseEntity<>(new Response(SuccessMessage.ROLE_DELETE), HttpStatus.OK);
+    return new ResponseEntity<>(new SuccessResponse(SuccessMessage.ROLE_DELETE), HttpStatus.OK);
   }
 }

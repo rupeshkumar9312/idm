@@ -1,8 +1,9 @@
 package com.happiestminds.internal.idm.web.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.http.HttpStatus;
 
-public class Response {
+public enum ErrorMessage {
+  ROLE_NOT_FOUND(HttpStatus.NOT_FOUND.value(), "Role not found", 1);
 
   private int code;
 
@@ -10,16 +11,7 @@ public class Response {
 
   private int applicationErrorCode;
 
-  @JsonIgnore
-  private SuccessMessage successMessage;
-
-  public Response(SuccessMessage successMessage) {
-    code = successMessage.getStatus().value();
-    message = successMessage.getMessage();
-    applicationErrorCode = successMessage.getApplicationErrorCode();
-  }
-
-  public Response(int code, String message, int applicationErrorCode) {
+  ErrorMessage(int code, String message, int applicationErrorCode) {
     this.code = code;
     this.message = message;
     this.applicationErrorCode = applicationErrorCode;
