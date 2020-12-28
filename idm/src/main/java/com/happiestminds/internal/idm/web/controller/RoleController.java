@@ -5,6 +5,7 @@ import com.happiestminds.internal.idm.dataaccess.dto.RoleCreateRequest;
 import com.happiestminds.internal.idm.dataaccess.dto.RoleUpdateRequest;
 import com.happiestminds.internal.idm.web.response.RoleResponse;
 import com.happiestminds.internal.idm.web.response.Response;
+import com.happiestminds.internal.idm.web.response.SuccessMessage;
 import com.happiestminds.internal.idm.web.transformer.RoleTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,12 +23,12 @@ public class RoleController {
   public ResponseEntity<?> createRole(@RequestBody RoleCreateRequest roleCreateRequest) {
     var role = RoleTransformer.INSTANCE.toEntity(roleCreateRequest);
     roleService.createRole(role);
-    return new ResponseEntity<>(
-            new Response(HttpStatus.CREATED.value(), "success", "0"), HttpStatus.CREATED);
+    return new ResponseEntity<Response>(
+            new Response(SuccessMessage.ROLE_CREATE), HttpStatus.CREATED);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<?> getRole(@PathVariable Long id) {
+  public ResponseEntity<?> getRole(@PathVariable Long id) throws Exception {
     var roleDto = RoleTransformer.INSTANCE.toDto(roleService.getRole(id));
     return new ResponseEntity<>(roleDto, HttpStatus.OK);
   }
@@ -43,14 +44,12 @@ public class RoleController {
           @RequestBody RoleUpdateRequest roleUpdateRequest, @PathVariable Long id) {
     var roleEntity = RoleTransformer.INSTANCE.toEntity(roleUpdateRequest);
     roleService.updateRole(id, roleEntity);
-    return new ResponseEntity<>(
-            new Response(HttpStatus.OK.value(), "Role Updated Successfully", "0"), HttpStatus.OK);
+    return new ResponseEntity<>(new Response(SuccessMessage.ROLE_UPDATE), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Response> deleteRole(@PathVariable Long id) {
+  public ResponseEntity<?> deleteRole(@PathVariable Long id) {
     roleService.deleteRole(id);
-    return new ResponseEntity<>(
-            new Response(HttpStatus.OK.value(), "Role deleted successfully", "0"), HttpStatus.OK);
+    return new ResponseEntity<>(new Response(SuccessMessage.ROLE_DELETE), HttpStatus.OK);
   }
 }
