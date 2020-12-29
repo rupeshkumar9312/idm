@@ -2,7 +2,9 @@ package com.happiestminds.internal.idm.web.controller;
 
 import com.happiestminds.internal.idm.business.PermissionService;
 import com.happiestminds.internal.idm.dataaccess.entities.Permission;
+import com.happiestminds.internal.idm.exception.ResourceNotFoundException;
 import com.happiestminds.internal.idm.web.model.PermissionDto;
+import com.happiestminds.internal.idm.web.response.ErrorMessage;
 import com.happiestminds.internal.idm.web.transformer.PermissionTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,9 @@ public class PermissionController {
   public Map<String, List<PermissionDto>> getPermission(@RequestParam String feature) {
     var features = Arrays.asList(feature.split(","));
     var permissionList = permissionService.getAllPermissionByFeature(features);
+    if (permissionList.isEmpty()) {
+      throw new ResourceNotFoundException(ErrorMessage.PERMISSION_NOT_FOUND);
+    }
     return getFeatureAndPermissions(permissionList);
   }
 
