@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +32,7 @@ public class RoleServiceImpl implements RoleService {
   private PermissionRepository permissionRepository;
 
   @Override
+  @Transactional
   public Role createRole(Role role) {
     return roleRepository.save(role);
   }
@@ -43,6 +45,7 @@ public class RoleServiceImpl implements RoleService {
   }
 
   @Override
+  @Transactional
   public Role updateRole(Long id, Role role) {
     var dbRole = getRole(id);
     dbRole.setDescription(role.getDescription());
@@ -55,6 +58,7 @@ public class RoleServiceImpl implements RoleService {
   }
 
   @Override
+  @Transactional
   public void deleteRole(Long id) {
     try {
       roleRepository.deleteById(id);
