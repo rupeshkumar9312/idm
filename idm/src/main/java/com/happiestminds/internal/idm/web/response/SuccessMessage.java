@@ -3,10 +3,11 @@ package com.happiestminds.internal.idm.web.response;
 import org.springframework.http.HttpStatus;
 
 public enum SuccessMessage {
-  ROLE_UPDATE("Role updated successfully", HttpStatus.OK, 0),
-  ROLE_CREATE("Role created successfully", HttpStatus.CREATED, 0),
-  ROLE_DELETE("Role deleted successfully", HttpStatus.OK, 0);
-
+  ROLE_UPDATED("Role updated successfully", HttpStatus.OK, 0),
+  ROLE_CREATED("Role created successfully", HttpStatus.CREATED, 0),
+  ROLE_DELETED("Role deleted successfully", HttpStatus.OK, 0),
+  USER_CREATED("User created successfully", HttpStatus.CREATED, 0),
+  USER_DELETED("User deleted successfully", HttpStatus.OK, 0);
   private String message;
 
   private HttpStatus status;

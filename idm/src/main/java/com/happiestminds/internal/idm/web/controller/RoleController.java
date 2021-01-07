@@ -24,7 +24,7 @@ public class RoleController {
     var role = RoleTransformer.INSTANCE.toEntity(roleCreateRequest);
     roleService.createRole(role);
     return new ResponseEntity<SuccessResponse>(
-            new SuccessResponse(SuccessMessage.ROLE_CREATE), HttpStatus.CREATED);
+            new SuccessResponse(SuccessMessage.ROLE_CREATED), HttpStatus.CREATED);
   }
 
   @GetMapping("/{id}")
@@ -44,12 +44,12 @@ public class RoleController {
           @RequestBody RoleUpdateRequest roleUpdateRequest, @PathVariable Long id) {
     var roleEntity = RoleTransformer.INSTANCE.toEntity(roleUpdateRequest);
     roleService.updateRole(id, roleEntity);
-    return new ResponseEntity<>(new SuccessResponse(SuccessMessage.ROLE_UPDATE), HttpStatus.OK);
+      return new ResponseEntity<>(new SuccessResponse(SuccessMessage.ROLE_UPDATED), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<?> deleteRole(@PathVariable Long id) {
     roleService.deleteRole(id);
-    return new ResponseEntity<>(new SuccessResponse(SuccessMessage.ROLE_DELETE), HttpStatus.OK);
+      return new ResponseEntity<>(new SuccessResponse(SuccessMessage.ROLE_DELETED), HttpStatus.OK);
   }
 }

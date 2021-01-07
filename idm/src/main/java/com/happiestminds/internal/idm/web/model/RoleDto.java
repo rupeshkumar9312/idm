@@ -1,14 +1,9 @@
 package com.happiestminds.internal.idm.web.model;
 
-import com.happiestminds.internal.idm.dataaccess.entities.Permission;
-import com.happiestminds.internal.idm.dataaccess.entities.RolePermission;
-import com.happiestminds.internal.idm.dataaccess.entities.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
